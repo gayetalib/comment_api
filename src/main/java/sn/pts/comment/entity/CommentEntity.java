@@ -10,15 +10,16 @@ import java.util.Date;
 @Table(name = "bss_td_comment")
 public class CommentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id", unique = true, updatable = false)
     private Long id;
 
-    @Column(name = "author", unique = true)
+    @Column(name = "author")
     private String author;
 
     @Column(name = "text")
-    @Lob
     private String text;
 
-    @Column(name = "date")
-    private Date date;
+    //@Column(name = "date")
+    //private Date date;
 }
