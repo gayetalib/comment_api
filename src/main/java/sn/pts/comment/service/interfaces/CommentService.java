@@ -9,5 +9,5 @@ public interface CommentService {
     CommentEntity getComment(Long id);
     CommentEntity addComment(CommentEntity comment);
     CommentEntity updateComment(Long id, CommentEntity comment);
-    CommentEntity deleteComment(Long id);
+    void deleteComment(Long id);
 }

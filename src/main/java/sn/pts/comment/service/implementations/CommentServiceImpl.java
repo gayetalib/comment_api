@@ -20,7 +20,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentEntity getComment(Long id) {
-        return null;
+        return repository.findById(id).orElseThrow(null);
     }
 
     @Override
@@ -29,12 +29,15 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentEntity updateComment(Long id, CommentEntity comment) {
-        return null;
+    public CommentEntity updateComment(Long id, CommentEntity dto) {
+        CommentEntity existingComment = getComment(id);
+        existingComment.setAuthor(dto.getAuthor());
+        existingComment.setText(dto.getText());
+        return repository.save(existingComment);
     }
 
     @Override
-    public CommentEntity deleteComment(Long id) {
-        return null;
+    public void deleteComment(Long id) {
+         repository.deleteById(id);
     }
 }
