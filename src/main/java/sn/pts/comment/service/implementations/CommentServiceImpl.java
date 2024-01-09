@@ -5,13 +5,16 @@ import org.springframework.stereotype.Service;
 import sn.pts.comment.entity.CommentEntity;
 import sn.pts.comment.repository.CommentRepository;
 import sn.pts.comment.service.interfaces.CommentService;
+import sn.pts.comment.web.dto.request.CommentReqDTO;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
-    final CommentRepository repository;
+    private final CommentRepository repository;
 
     @Override
     public List<CommentEntity> getComments() {
@@ -24,12 +27,17 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentEntity addComment(CommentEntity comment) {
+    public CommentEntity addComment(CommentReqDTO dto) {
+        CommentEntity comment = CommentEntity.builder()
+                .author(dto.getAuthor())
+                .text(dto.getText())
+                .date(Date.from(Instant.now()))
+                .build();
         return repository.save(comment);
     }
 
     @Override
-    public CommentEntity updateComment(Long id, CommentEntity dto) {
+    public CommentEntity updateComment(Long id, CommentReqDTO dto) {
         CommentEntity existingComment = getComment(id);
         existingComment.setAuthor(dto.getAuthor());
         existingComment.setText(dto.getText());
@@ -38,6 +46,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void deleteComment(Long id) {
-         repository.deleteById(id);
+         //repository.deleteById(id);
+        CommentEntity comment = getComment(id);
+        comment.setDeleted(true);
+        repository.save(comment);
     }
 }

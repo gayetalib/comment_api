@@ -26,6 +26,9 @@ public class CommentEntity {
     @Column(name = "text")
     private String text;
 
-    //@Column(name = "date")
-    //private Date date;
+    @Column(name = "date")
+    private Date date;
+
+    @Column(name = "is_deleted")
+    private boolean isDeleted = false;
 }
