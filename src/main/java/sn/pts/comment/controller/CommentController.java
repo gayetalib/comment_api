@@ -1,8 +1,6 @@
 package sn.pts.comment.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/comments")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CommentController {
 
     private final CommentService service;
@@ -30,13 +28,13 @@ public class CommentController {
     @GetMapping("{id}")
     public ResponseEntity<?> getComment(@PathVariable("id") Long id){
         CommentEntity comment = service.getComment(id);
-        return ResponseEntity.ok(mapper.toDto(comment));
+        return ResponseEntity.ok().body(mapper.toDto(comment));
     }
 
     @PutMapping("{id}")
     public ResponseEntity<?> updateComment(@PathVariable("id") Long id, @RequestBody CommentReqDTO dto){
         CommentEntity comment = service.updateComment(id, dto);
-        return ResponseEntity.ok(mapper.toDto(comment));
+        return ResponseEntity.ok().body(mapper.toDto(comment));
     }
 
     @DeleteMapping("{id}")
@@ -50,6 +48,6 @@ public class CommentController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> addComment(@RequestBody CommentReqDTO entity){
         CommentEntity comment = service.addComment(entity);
-        return ResponseEntity.ok(mapper.toDto(comment));
+        return ResponseEntity.ok().body(mapper.toDto(comment));
     }
 }

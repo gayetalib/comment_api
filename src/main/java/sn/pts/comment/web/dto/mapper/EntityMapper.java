@@ -1,5 +1,7 @@
 package sn.pts.comment.web.dto.mapper;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.MapperConfig;
 import org.mapstruct.Mapping;

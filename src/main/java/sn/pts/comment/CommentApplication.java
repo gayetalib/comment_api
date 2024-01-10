@@ -14,7 +14,7 @@ public class CommentApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) {
 		log.info("...CommentApplication running...");
 	}
 }
