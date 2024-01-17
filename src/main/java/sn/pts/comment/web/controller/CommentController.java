@@ -1,4 +1,4 @@
-package sn.pts.comment.controller;
+package sn.pts.comment.web.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

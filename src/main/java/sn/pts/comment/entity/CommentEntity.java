@@ -14,8 +14,9 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@SequenceGenerator(sequenceName = "seq_comment", name = "seq_comment", initialValue = 100)
 public class CommentEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_comment")
     @Id
     @Column(name = "id", unique = true, updatable = false)
     private Long id;
